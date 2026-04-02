@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>💙 ለኔ ሴት 💙</title>
+<title>&#128153; &#1208;&#1292; &#1237;&#1273; &#128153;</title>
 
 <style>
 body {
@@ -22,34 +22,6 @@ body {
     100% {background-position: 0% 50%;}
 }
 
-/* Start Screen */
-#startScreen {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #0f2027;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-}
-
-#startBtn {
-    padding: 20px 50px;
-    font-size: 28px;
-    background: linear-gradient(45deg, #4facfe, #00f2fe);
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    color: white;
-    box-shadow: 0 0 20px #4facfe;
-    transition: 0.3s;
-}
-
-#startBtn:hover {
-    transform: scale(1.1);
-}
-
 /* Name */
 #name {
     position: absolute;
@@ -60,24 +32,12 @@ body {
     text-shadow: 0 0 20px #4facfe, 0 0 40px white;
 }
 
-.letter {
-    opacity: 0;
-    display: inline-block;
-    transform: translateY(-120px);
-    animation: drop 0.8s forwards;
-}
-
-@keyframes drop {
-    to { opacity: 1; transform: translateY(0); }
-}
-
 /* Message */
 #message {
     position: absolute;
     top: 50%;
     width: 100%;
     font-size: 38px;
-    text-shadow: 0 0 10px white;
 }
 
 /* Hearts */
@@ -89,7 +49,7 @@ body {
 }
 
 @keyframes floatUp {
-    from { transform: translateY(100vh); opacity:1;}
+    from { transform: translateY(100vh); }
     to { transform: translateY(-10vh); opacity:0;}
 }
 
@@ -114,8 +74,21 @@ body {
 }
 
 @keyframes balloonFloat {
-    from { transform: translateY(110vh);}
-    to { transform: translateY(-10vh);}
+    0% { transform: translateY(110vh) translateX(0); }
+    50% { transform: translateY(50vh) translateX(30px); }
+    100% { transform: translateY(-10vh) translateX(-30px); }
+}
+
+/* Flowers */
+.flower {
+    position: fixed;
+    font-size: 22px;
+    animation: flowerMove 8s linear infinite;
+}
+
+@keyframes flowerMove {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-10vh) rotate(360deg); }
 }
 
 /* Sparkles */
@@ -161,7 +134,6 @@ body {
     border-radius: 10px;
     color: white;
     cursor: pointer;
-    box-shadow: 0 0 15px #4facfe;
 }
 
 /* Gallery */
@@ -179,32 +151,29 @@ body {
     max-width: 500px;
     border-radius: 20px;
     box-shadow: 0 0 25px #4facfe;
-    transition: 0.5s;
+    animation: floatImg 5s ease-in-out infinite;
 }
 
-#gallery img:hover {
-    transform: scale(1.05);
+@keyframes floatImg {
+    0%,100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
 }
 </style>
 </head>
 
 <body>
 
-<div id="startScreen">
-    <button id="startBtn">💙 Tap to Start 💙</button>
-</div>
-
 <div id="name"></div>
 <div id="message"></div>
 
-<button id="openBtn" onclick="openLetter()">💌 Open Message</button>
+<button id="openBtn" onclick="openLetter()">&#128140; Open Message</button>
 
 <div id="letter">
-    My love 💙<br><br>
+    My love &#128153;<br><br>
     You are my peace, my happiness, my everything.<br>
-    Every moment with you feels magical ✨<br><br>
-    Happy Birthday 🎂💙<br><br>
-    Forever Yours 💞
+    Every moment with you feels magical &#10024;<br><br>
+    Happy Birthday &#127874;&#128153;<br><br>
+    Forever Yours &#128158;
 </div>
 
 <div id="gallery">
@@ -213,46 +182,20 @@ body {
     <img src="photo3.jpg">
 </div>
 
-<audio id="music" loop>
-    <source src="https://drive.google.com/uc?export=download&id=1BlP9FQ0EFXWieRSmUMMiKc0SvdBOEznT">
-</audio>
-
 <script>
 window.onload = function() {
 
-    const name = "Ayu 💙";
-    const container = document.getElementById("name");
+    const name = "Ayu &#128153;";
+    document.getElementById("name").innerHTML = name;
 
-    name.split("").forEach((c,i)=>{
-        let span = document.createElement("span");
-        span.textContent = c;
-        span.className = "letter";
-        span.style.animationDelay = i * 0.2 + "s";
-        container.appendChild(span);
-    });
-
-    const text = "Happy Birthday My Queen 👑💙";
-    let i = 0;
-
-    function type() {
-        if(i < text.length){
-            document.getElementById("message").innerHTML += text[i];
-            i++;
-            setTimeout(type, 70);
-        }
-    }
-    setTimeout(type,1500);
-
-    document.getElementById("startBtn").onclick = function(){
-        document.getElementById("startScreen").style.display="none";
-        document.getElementById("music").play();
-    };
+    const text = "Happy Birthday My Queen &#128081;&#128153;";
+    document.getElementById("message").innerHTML = text;
 
     // Hearts
     setInterval(()=>{
         let heart = document.createElement("div");
         heart.className="heart";
-        heart.innerHTML="❤️";
+        heart.innerHTML="&#10084;";
         heart.style.left=Math.random()*100+"%";
         document.body.appendChild(heart);
         setTimeout(()=>heart.remove(),6000);
@@ -265,7 +208,17 @@ window.onload = function() {
         b.style.left=Math.random()*100+"%";
         document.body.appendChild(b);
         setTimeout(()=>b.remove(),10000);
-    },800);
+    },700);
+
+    // Flowers
+    setInterval(()=>{
+        let f = document.createElement("div");
+        f.className="flower";
+        f.innerHTML="&#127800;";
+        f.style.left=Math.random()*100+"%";
+        document.body.appendChild(f);
+        setTimeout(()=>f.remove(),8000);
+    },600);
 
     // Sparkles
     setInterval(()=>{
