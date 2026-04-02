@@ -228,12 +228,7 @@ window.onload = function() {
     document.getElementById("startBtn").onclick = function(){
         document.getElementById("startScreen").style.display="none";
         document.getElementById("music").play().catch(()=>{});
-        let music = document.getElementById("music");
-
-    setTimeout(()=>{
-        music.muted = false;
-        music.play().catch(()=>{});
-    }, 1000);
+      
     };
 
     // Hearts
