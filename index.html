@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>&#128153; የኔ ሴት &#128153;</title>
+<title>&#128153; &#1208;&#1292; &#1237;&#1273; &#128153;</title>
 
 <style>
 body {
@@ -20,6 +20,34 @@ body {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
+}
+
+/* Start Screen */
+#startScreen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #0f2027;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#startBtn {
+    padding: 20px 50px;
+    font-size: 28px;
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0 0 20px #4facfe;
+    transition: 0.3s;
+}
+
+#startBtn:hover {
+    transform: scale(1.1);
 }
 
 /* Name */
@@ -163,6 +191,10 @@ body {
 
 <body>
 
+<div id="startScreen">
+    <button id="startBtn">&#128153; Tap to Start &#128153;</button>
+</div>
+
 <div id="name"></div>
 <div id="message"></div>
 
@@ -182,14 +214,21 @@ body {
     <img src="photo3.jpg">
 </div>
 
+<!-- ✅ GitHub Audio -->
+<audio id="music" loop preload="auto">
+    <source src="https://raw.githubusercontent.com/USERNAME/REPO/main/music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 window.onload = function() {
 
-    const name = "&#128153 Ayu &#128153;";
-    document.getElementById("name").innerHTML = name;
+    document.getElementById("name").innerHTML = "Ayu &#128153;";
+    document.getElementById("message").innerHTML = "Happy Birthday My Queen &#128081;&#128153;";
 
-    const text = "Happy Birthday My Queen &#128081;&#128153;";
-    document.getElementById("message").innerHTML = text;
+    document.getElementById("startBtn").onclick = function(){
+        document.getElementById("startScreen").style.display="none";
+        document.getElementById("music").play().catch(()=>{});
+    };
 
     // Hearts
     setInterval(()=>{
