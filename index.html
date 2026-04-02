@@ -8,15 +8,18 @@
 body {
     margin: 0;
     overflow-x: hidden;
-    background: black;
     font-family: 'Segoe UI', sans-serif;
     color: white;
     text-align: center;
+    background: linear-gradient(-45deg, #ff4e50, #ff9a9e, #fad0c4, #ffdde1);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
 }
 
-/* Smooth scroll */
-html {
-    scroll-behavior: smooth;
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 
 /* Start Screen */
@@ -32,12 +35,19 @@ html {
 }
 
 #startBtn {
-    padding: 20px 40px;
-    font-size: 24px;
-    background: pink;
+    padding: 20px 50px;
+    font-size: 28px;
+    background: linear-gradient(45deg, pink, red);
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
     cursor: pointer;
+    color: white;
+    box-shadow: 0 0 20px pink;
+    transition: 0.3s;
+}
+
+#startBtn:hover {
+    transform: scale(1.1);
 }
 
 /* Name */
@@ -45,14 +55,16 @@ html {
     position: absolute;
     top: 10%;
     width: 100%;
-    font-size: 50px;
+    font-size: 80px;
+    font-weight: bold;
+    text-shadow: 0 0 20px #fff, 0 0 40px pink;
 }
 
 .letter {
     opacity: 0;
     display: inline-block;
-    transform: translateY(-50px);
-    animation: drop 0.5s forwards;
+    transform: translateY(-100px);
+    animation: drop 0.8s forwards;
 }
 
 @keyframes drop {
@@ -62,44 +74,76 @@ html {
 /* Message */
 #message {
     position: absolute;
-    top: 55%;
+    top: 50%;
     width: 100%;
-    font-size: 24px;
+    font-size: 36px;
+    text-shadow: 0 0 10px white;
 }
 
-/* Hearts */
+/* Floating hearts */
 .heart {
     position: fixed;
-    color: pink;
-    font-size: 20px;
-    animation: float 5s linear infinite;
+    color: #ff4e50;
+    font-size: 25px;
+    animation: float 6s linear infinite;
 }
 
 @keyframes float {
-    from { transform: translateY(100vh); }
-    to { transform: translateY(-10vh); }
+    from { transform: translateY(100vh) scale(1); opacity:1;}
+    to { transform: translateY(-10vh) scale(1.5); opacity:0;}
+}
+
+/* Sparkles */
+.sparkle {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkle 3s linear infinite;
+}
+
+@keyframes sparkle {
+    from {opacity:1;}
+    to {opacity:0; transform: scale(2);}
 }
 
 /* Letter */
 #letter {
     position: absolute;
-    top: 75%;
+    top: 70%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scale(0);
     background: white;
     color: black;
-    padding: 20px;
-    border-radius: 10px;
-    display: none;
+    padding: 30px;
+    border-radius: 20px;
+    font-size: 22px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 0 20px pink;
+    transition: 0.5s;
 }
 
 /* Button */
 #openBtn {
     position: absolute;
-    bottom: 50px;
+    bottom: 40px;
+    padding: 15px 30px;
+    font-size: 20px;
+    background: red;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px red;
 }
 
-/* Gallery (NEW) */
+#openBtn:hover {
+    transform: scale(1.1);
+}
+
+/* Gallery */
 #gallery {
     margin-top: 100vh;
     padding: 40px;
@@ -112,8 +156,13 @@ html {
 #gallery img {
     width: 80%;
     max-width: 500px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    border-radius: 20px;
+    box-shadow: 0 0 25px white;
+    transition: 0.5s;
+}
+
+#gallery img:hover {
+    transform: scale(1.05);
 }
 </style>
 </head>
@@ -133,10 +182,10 @@ html {
     My love ❤️<br><br>
     You are my happiness, my peace, my everything.<br>
     I’m so lucky to have you in my life.<br><br>
-    Happy Birthday 🎂💖
+    Happy Birthday 🎂💖<br><br>
+    Forever Yours 💞
 </div>
 
-<!-- NEW SCROLL GALLERY -->
 <div id="gallery">
     <img src="photo1.jpg">
     <img src="photo2.jpg">
@@ -150,51 +199,58 @@ html {
 <script>
 window.onload = function() {
 
-    // Name animation
-    const name = "Ayu";
+    const name = "Ayu 💖";
     const container = document.getElementById("name");
 
     name.split("").forEach((c,i)=>{
         let span = document.createElement("span");
         span.textContent = c;
         span.className = "letter";
-        span.style.animationDelay = i * 0.3 + "s";
+        span.style.animationDelay = i * 0.2 + "s";
         container.appendChild(span);
     });
 
-    // Typing message
-    const text = "Happy Birthday Mi Reina 💖";
+    const text = "Happy Birthday My Queen 👑💖";
     let i = 0;
 
     function type() {
         if(i < text.length){
             document.getElementById("message").innerHTML += text[i];
             i++;
-            setTimeout(type, 80);
+            setTimeout(type, 70);
         }
     }
     setTimeout(type,1500);
 
-    // Start button
     document.getElementById("startBtn").onclick = function(){
         document.getElementById("startScreen").style.display="none";
         document.getElementById("music").play();
     };
 
-    // Floating hearts
+    // Hearts
     setInterval(()=>{
         let heart = document.createElement("div");
         heart.className="heart";
         heart.innerHTML="❤️";
         heart.style.left=Math.random()*100+"%";
         document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(),5000);
-    },500);
+        setTimeout(()=>heart.remove(),6000);
+    },400);
+
+    // Sparkles
+    setInterval(()=>{
+        let s = document.createElement("div");
+        s.className="sparkle";
+        s.style.left=Math.random()*100+"%";
+        s.style.top=Math.random()*100+"%";
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(),3000);
+    },200);
 };
 
-// Open letter
 function openLetter(){
-    document.getElementById("letter").style.display="block";
+    let letter = document.getElementById("letter");
+    letter.style.transform = "translateX(-50%) scale(1)";
 }
 </script>
 
