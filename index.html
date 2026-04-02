@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>❤️ ለኔ ሴት ❤️</title>
+<title>💙 ለኔ ሴት 💙</title>
 
 <style>
 body {
@@ -11,12 +11,12 @@ body {
     font-family: 'Segoe UI', sans-serif;
     color: white;
     text-align: center;
-    background: linear-gradient(-45deg, #ff4e50, #ff9a9e, #fad0c4, #ffdde1);
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #4facfe);
     background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
+    animation: bgMove 12s ease infinite;
 }
 
-@keyframes gradientBG {
+@keyframes bgMove {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
@@ -27,7 +27,7 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: black;
+    background: #0f2027;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,12 +37,12 @@ body {
 #startBtn {
     padding: 20px 50px;
     font-size: 28px;
-    background: linear-gradient(45deg, pink, red);
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
     border: none;
     border-radius: 15px;
     cursor: pointer;
     color: white;
-    box-shadow: 0 0 20px pink;
+    box-shadow: 0 0 20px #4facfe;
     transition: 0.3s;
 }
 
@@ -55,15 +55,15 @@ body {
     position: absolute;
     top: 10%;
     width: 100%;
-    font-size: 80px;
+    font-size: 90px;
     font-weight: bold;
-    text-shadow: 0 0 20px #fff, 0 0 40px pink;
+    text-shadow: 0 0 20px #4facfe, 0 0 40px white;
 }
 
 .letter {
     opacity: 0;
     display: inline-block;
-    transform: translateY(-100px);
+    transform: translateY(-120px);
     animation: drop 0.8s forwards;
 }
 
@@ -76,28 +76,53 @@ body {
     position: absolute;
     top: 50%;
     width: 100%;
-    font-size: 36px;
+    font-size: 38px;
     text-shadow: 0 0 10px white;
 }
 
-/* Floating hearts */
+/* Hearts */
 .heart {
     position: fixed;
-    color: #ff4e50;
-    font-size: 25px;
-    animation: float 6s linear infinite;
+    color: #ff4d6d;
+    font-size: 24px;
+    animation: floatUp 6s linear infinite;
 }
 
-@keyframes float {
-    from { transform: translateY(100vh) scale(1); opacity:1;}
-    to { transform: translateY(-10vh) scale(1.5); opacity:0;}
+@keyframes floatUp {
+    from { transform: translateY(100vh); opacity:1;}
+    to { transform: translateY(-10vh); opacity:0;}
+}
+
+/* Balloons */
+.balloon {
+    position: fixed;
+    width: 30px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #6dd5ed, #2193b0);
+    animation: balloonFloat 10s linear infinite;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: white;
+    top: 40px;
+    left: 50%;
+}
+
+@keyframes balloonFloat {
+    from { transform: translateY(110vh);}
+    to { transform: translateY(-10vh);}
 }
 
 /* Sparkles */
 .sparkle {
     position: fixed;
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     background: white;
     border-radius: 50%;
     animation: sparkle 3s linear infinite;
@@ -115,13 +140,13 @@ body {
     left: 50%;
     transform: translateX(-50%) scale(0);
     background: white;
-    color: black;
+    color: #203a43;
     padding: 30px;
     border-radius: 20px;
     font-size: 22px;
     width: 80%;
     max-width: 400px;
-    box-shadow: 0 0 20px pink;
+    box-shadow: 0 0 25px #4facfe;
     transition: 0.5s;
 }
 
@@ -131,16 +156,12 @@ body {
     bottom: 40px;
     padding: 15px 30px;
     font-size: 20px;
-    background: red;
+    background: #4facfe;
     border: none;
     border-radius: 10px;
     color: white;
     cursor: pointer;
-    box-shadow: 0 0 15px red;
-}
-
-#openBtn:hover {
-    transform: scale(1.1);
+    box-shadow: 0 0 15px #4facfe;
 }
 
 /* Gallery */
@@ -157,7 +178,7 @@ body {
     width: 80%;
     max-width: 500px;
     border-radius: 20px;
-    box-shadow: 0 0 25px white;
+    box-shadow: 0 0 25px #4facfe;
     transition: 0.5s;
 }
 
@@ -170,7 +191,7 @@ body {
 <body>
 
 <div id="startScreen">
-    <button id="startBtn">💖 Tap to Start 💖</button>
+    <button id="startBtn">💙 Tap to Start 💙</button>
 </div>
 
 <div id="name"></div>
@@ -179,10 +200,10 @@ body {
 <button id="openBtn" onclick="openLetter()">💌 Open Message</button>
 
 <div id="letter">
-    My love ❤️<br><br>
-    You are my happiness, my peace, my everything.<br>
-    I’m so lucky to have you in my life.<br><br>
-    Happy Birthday 🎂💖<br><br>
+    My love 💙<br><br>
+    You are my peace, my happiness, my everything.<br>
+    Every moment with you feels magical ✨<br><br>
+    Happy Birthday 🎂💙<br><br>
     Forever Yours 💞
 </div>
 
@@ -199,7 +220,7 @@ body {
 <script>
 window.onload = function() {
 
-    const name = "Ayu 💖";
+    const name = "Ayu 💙";
     const container = document.getElementById("name");
 
     name.split("").forEach((c,i)=>{
@@ -210,7 +231,7 @@ window.onload = function() {
         container.appendChild(span);
     });
 
-    const text = "Happy Birthday My Queen 👑💖";
+    const text = "Happy Birthday My Queen 👑💙";
     let i = 0;
 
     function type() {
@@ -237,6 +258,15 @@ window.onload = function() {
         setTimeout(()=>heart.remove(),6000);
     },400);
 
+    // Balloons
+    setInterval(()=>{
+        let b = document.createElement("div");
+        b.className="balloon";
+        b.style.left=Math.random()*100+"%";
+        document.body.appendChild(b);
+        setTimeout(()=>b.remove(),10000);
+    },800);
+
     // Sparkles
     setInterval(()=>{
         let s = document.createElement("div");
@@ -249,8 +279,7 @@ window.onload = function() {
 };
 
 function openLetter(){
-    let letter = document.getElementById("letter");
-    letter.style.transform = "translateX(-50%) scale(1)";
+    document.getElementById("letter").style.transform = "translateX(-50%) scale(1)";
 }
 </script>
 
