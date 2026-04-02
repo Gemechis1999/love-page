@@ -215,10 +215,17 @@ body {
 </div>
 
 <!-- ✅ GitHub Audio -->
-<audio id="music" loop preload="auto">
-    <source src="https://cdn.jsdelivr.net/gh/gemechis1999/love-page@main/music.mp3" type="audio/mpeg">
+<audio id="music" loop autoplay muted>
+    <source src="https://gemechis1999.github.io/love-page/music.mp3" type="audio/mpeg">
 </audio>
+window.onload = function(){
+    let music = document.getElementById("music");
 
+    setTimeout(()=>{
+        music.muted = false;
+        music.play().catch(()=>{});
+    }, 1000);
+};
 <script>
 window.onload = function() {
 
